@@ -70,6 +70,10 @@ public class Todo {
         this.complete = complete;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public User getOwner() {
         return owner;
     }

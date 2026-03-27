@@ -7,16 +7,16 @@ import org.springframework.security.core.GrantedAuthority;
 @Embeddable
 public class Authority implements GrantedAuthority {
 
-    private String authority;
+  private String authority;
 
-    public Authority () {}
+  public Authority() {}
 
-    public Authority(String authority) {
-        this.authority = authority;
-    }
+  public Authority(String authority) {
+    this.authority = authority;
+  }
 
-    @Override
-    public @Nullable String getAuthority() {
-        return authority;
-    }
+  @Override
+  public @Nullable String getAuthority() {
+    return authority;
+  }
 }

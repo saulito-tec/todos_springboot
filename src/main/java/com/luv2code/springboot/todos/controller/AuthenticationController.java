@@ -1,6 +1,5 @@
 package com.luv2code.springboot.todos.controller;
 
-
 import com.luv2code.springboot.todos.request.AuthenticationRequest;
 import com.luv2code.springboot.todos.request.RegisterRequest;
 import com.luv2code.springboot.todos.response.AuthenticationResponse;
@@ -13,27 +12,28 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@Tag(name = " Authentication REST API Endpoints", description = "Operations related to register and login")
+@Tag(
+    name = " Authentication REST API Endpoints",
+    description = "Operations related to register and login")
 public class AuthenticationController {
 
-    private final AuthenticationService authenticationService;
+  private final AuthenticationService authenticationService;
 
-    public AuthenticationController(AuthenticationService authenticationService) {
-        this.authenticationService = authenticationService;
-    }
+  public AuthenticationController(AuthenticationService authenticationService) {
+    this.authenticationService = authenticationService;
+  }
 
-    @Operation(summary = "Register a user", description = "Create a new user in DB")
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/register")
-    public void register(@Valid @RequestBody RegisterRequest registerRequest) throws Exception {
-        authenticationService.register(registerRequest);
-    }
+  @Operation(summary = "Register a user", description = "Create a new user in DB")
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/register")
+  public void register(@Valid @RequestBody RegisterRequest registerRequest) throws Exception {
+    authenticationService.register(registerRequest);
+  }
 
-    @Operation(summary = "Login a user", description = "submit email & password")
-    @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/login")
-    public AuthenticationResponse login (@Valid @RequestBody AuthenticationRequest authRequest){
-        return authenticationService.login(authRequest);
-    }
-
+  @Operation(summary = "Login a user", description = "submit email & password")
+  @ResponseStatus(HttpStatus.OK)
+  @PostMapping("/login")
+  public AuthenticationResponse login(@Valid @RequestBody AuthenticationRequest authRequest) {
+    return authenticationService.login(authRequest);
+  }
 }

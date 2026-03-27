@@ -4,12 +4,10 @@ import com.luv2code.springboot.todos.entity.Authority;
 import com.luv2code.springboot.todos.entity.User;
 import com.luv2code.springboot.todos.repository.UserRepository;
 import com.luv2code.springboot.todos.response.UserResponse;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +39,8 @@ public class AdminServiceImpl implements AdminService {
     if (user.isEmpty()
         || user.get().getAuthorities().stream()
             .anyMatch(authority -> "ROLE_ADMIN".equals(authority.getAuthority()))) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist or already an admin");
+      throw new ResponseStatusException(
+          HttpStatus.BAD_REQUEST, "User does not exist or already an admin");
     }
 
     List<Authority> authorities = new ArrayList<>();
@@ -59,15 +58,14 @@ public class AdminServiceImpl implements AdminService {
   public void deleteNonAdminUser(Long userId) {
     Optional<User> user = userRepository.findById(userId);
     if (user.isEmpty()
-            || user.get().getAuthorities().stream()
+        || user.get().getAuthorities().stream()
             .anyMatch(authority -> "ROLE_ADMIN".equals(authority.getAuthority()))) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist or already an admin");
+      throw new ResponseStatusException(
+          HttpStatus.BAD_REQUEST, "User does not exist or already an admin");
     }
 
     userRepository.delete(user.get());
-
   }
-
 
   private UserResponse convertToUserResponse(User user) {
     return new UserResponse(

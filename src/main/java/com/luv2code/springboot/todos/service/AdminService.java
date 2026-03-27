@@ -7,5 +7,6 @@ public interface AdminService {
   List<UserResponse> getAllUsers();
 
   UserResponse promoteToAdmin(Long userId);
+
   void deleteNonAdminUser(Long userId);
 }

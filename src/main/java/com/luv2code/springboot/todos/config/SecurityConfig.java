@@ -72,7 +72,8 @@ public class SecurityConfig {
                     "/webjars/**",
                     "/docs/")
                 .permitAll()
-                    .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .requestMatchers("/api/admin/**")
+                .hasRole("ADMIN")
                 .anyRequest()
                 .authenticated());
     http.csrf(csrf -> csrf.disable());
